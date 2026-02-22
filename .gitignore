@@ -1,0 +1,10 @@
+.python-version
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+output/
+*.mp3
+*.wav
+*.m4a
+*.ogg
