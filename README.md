@@ -4,6 +4,10 @@ A production-oriented pipeline that turns voice recordings from laboratory bench
 
 Built for pharmaceutical and biotech R&D environments where scientists have both hands occupied during experiments and need a hands-free way to capture structured observations.
 
+> This is a public showcase of a pipeline built for a confidential R&D project.
+> For context on the real use case, the engineering motivation, and why this
+> problem is worth solving, see [CONTEXT.md](./CONTEXT.md).
+
 ---
 
 ## Architecture
