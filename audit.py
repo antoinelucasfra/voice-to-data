@@ -14,7 +14,6 @@ under 21 CFR Part 11 / EMA Annex 11.
 
 import hashlib
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
@@ -36,8 +35,8 @@ class AuditRecord:
     validation_flags: list[str]
     review_required: bool
     commit_status: str  # "committed" | "pending_review" | "rejected"
-    reviewer_id: Optional[str] = None  # None if auto-committed
-    reviewer_timestamp: Optional[str] = None
+    reviewer_id: str | None = None  # None if auto-committed
+    reviewer_timestamp: str | None = None
 
     def to_dict(self) -> dict:
         """

@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Voice-driven structured data extraction pipeline for laboratory notebooks — ASR, LLM extraction, domain validation, GxP audit trail"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = {text=""}
 authors = [{ name = "Antoine Lucas", email = "antoine.lucas.fra@gmail.com" }]
 keywords = ["LLM", "ASR", "speech-to-text", "data-pipeline", "pharma", "lab-automation"]
 dependencies = [
@@ -14,7 +14,7 @@ dependencies = [
     "ollama>=0.2.0",
 ]
 
-[tool.uv]
+[dependency-groups]
 dev-dependencies = [
     "ruff>=0.3.0",
     "pytest>=8.0.0",

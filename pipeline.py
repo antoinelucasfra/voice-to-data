@@ -23,12 +23,11 @@ regulated (GxP) environment requires IQ/OQ/PQ validation per your
 organization's CSV framework. See README.md for compliance notes.
 """
 
-import hashlib
 import importlib.metadata
 import json
 import sys
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import instructor
@@ -38,7 +37,6 @@ from ollama import Client
 from audit import AuditRecord
 from schema import LabObservation
 from validator import DomainValidator
-
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -173,10 +171,10 @@ def run_pipeline(audio_path: Path, output_path: Path) -> None:
     Exits with code 1 if the record is hard-rejected.
     """
     run_id = (
-        f"run_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}"
+        f"run_{datetime.now(UTC).strftime('%Y%m%d_%H%M%S')}"
         f"_{uuid.uuid4().hex[:6]}"
     )
-    extraction_ts = datetime.now(timezone.utc).isoformat()
+    extraction_ts = datetime.now(UTC).isoformat()
 
     try:
         instructor_version = importlib.metadata.version("instructor")

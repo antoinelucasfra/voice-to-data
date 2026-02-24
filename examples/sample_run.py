@@ -11,7 +11,7 @@ Usage:
 import json
 import sys
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Allow running from the repo root
@@ -94,7 +94,7 @@ def run_demo() -> None:
 
     for i, (transcript, observation) in enumerate(demo_extraction_mock(), start=1):
         run_id = f"demo_{uuid.uuid4().hex[:8]}"
-        extraction_ts = datetime.now(timezone.utc).isoformat()
+        extraction_ts = datetime.now(UTC).isoformat()
 
         # Stage 3: Validation
         result = validator.validate(observation)
@@ -128,13 +128,14 @@ def run_demo() -> None:
         out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False))
 
         # Print summary
-        status_symbol = {"committed": "✓", "pending_review": "~", "rejected": "✗"}[
-            commit_status
-        ]
+        status_symbol = {"committed": "✓", "pending_review": "~", "rejected": "✗"}[commit_status]
         print(f"\n[{status_symbol}] Example {i} — {commit_status.upper()}")
         print(f"  Transcript : {transcript}")
         print(f"  Batch      : {observation.batch_id}")
-        print(f"  Measurement: {observation.measurement_type} = {observation.value} {observation.unit or ''}")
+        measurement = (
+            f"{observation.measurement_type} = {observation.value} {observation.unit or ''}"
+        )
+        print(f"  Measurement: {measurement}")
         if result.flags:
             for flag in result.flags:
                 print(f"  ! {flag}")
