@@ -170,10 +170,7 @@ def run_pipeline(audio_path: Path, output_path: Path) -> None:
     Prints commit status and any validation flags to stdout.
     Exits with code 1 if the record is hard-rejected.
     """
-    run_id = (
-        f"run_{datetime.now(UTC).strftime('%Y%m%d_%H%M%S')}"
-        f"_{uuid.uuid4().hex[:6]}"
-    )
+    run_id = f"run_{datetime.now(UTC).strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
     extraction_ts = datetime.now(UTC).isoformat()
 
     try:

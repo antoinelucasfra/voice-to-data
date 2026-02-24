@@ -91,9 +91,7 @@ class DomainValidator:
 
         # A record fails (hard block) only on IMPLAUSIBLE or MISSING_MANDATORY flags.
         # All other flags are soft — record proceeds to review queue.
-        passed = not any(
-            f.startswith(("IMPLAUSIBLE", "MISSING_MANDATORY")) for f in flags
-        )
+        passed = not any(f.startswith(("IMPLAUSIBLE", "MISSING_MANDATORY")) for f in flags)
         requires_review = len(flags) > 0
 
         return ValidationResult(passed=passed, flags=flags, requires_review=requires_review)
